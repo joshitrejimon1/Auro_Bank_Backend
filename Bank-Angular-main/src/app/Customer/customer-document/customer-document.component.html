@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <br>
+      <!-- Updated Heading -->
+
+<br>      <h2 class="mb-4" style="color: orange; font-weight: bold;">Upload Document</h2>
+      <!-- Added line below the heading -->
+      <p>Upload Necessary Documents For KYC Verification</p>
+
+      <form [formGroup]="customerDocumentForm" (ngSubmit)="submitData()">
+        <!-- Document Type -->
+        <div class="mb-3">
+          <label for="documentType" class="form-label">Document Type:</label>
+          <select class="form-select" formControlName="DocumentType">
+            <option value="">Select Document Type</option>
+            <option value="passport">Passport</option>
+            <option value="idCard">ID Card</option>
+          </select>
+          <div *ngIf="TypeValidator && TypeValidator.invalid && TypeValidator.touched" class="text-danger">
+            Document type is required.
+          </div>
+        </div>
+
+        <!-- Document File -->
+        <div class="mb-3">
+          <label for="documentFile" class="form-label">Choose File:</label>
+          <input type="file" formControlName="DocumentFile" class="form-control">
+          <div *ngIf="FileValidator && FileValidator.invalid && FileValidator.touched" class="text-danger">
+            File upload is required.
+          </div>
+        </div>
+
+        <!-- Customer ID -->
+        <div class="mb-3">
+          <label for="customerId" class="form-label">Customer ID:</label>
+          <input type="number" formControlName="CustomerId" class="form-control">
+          <div *ngIf="customerValidator && customerValidator.invalid && customerValidator.touched" class="text-danger">
+            Customer ID is required.
+          </div>
+        </div>
+
+        <!-- Submit Button with Bootstrap styles and hover effect -->
+        <button type="submit" class="btn btn-primary btn-hover" [disabled]="customerDocumentForm.invalid">Upload Document</button>
+      </form>
+    </div>
+  </div>
+</div>

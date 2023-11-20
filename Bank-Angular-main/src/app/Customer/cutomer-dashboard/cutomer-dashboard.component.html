@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>AURION-BANK</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    
+      body {
+      background-color: white;
+      color: black;
+      background-image: url('assets/background1.jpg'); /* Set the path to your background image */
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 300%;
+
+     
+    }
+
+    ba
+
+    /* Position the image */
+    img.card-image {
+      position: absolute;
+      top: 50%;
+      right: 30%;
+      transform: translateY(-50%);
+    }
+
+    .navbar {
+      background-color: black;
+      width: 200%;
+      height: 150%;
+    }
+
+    .navbar-brand,
+    .navbar-nav .nav-link {
+      color: orange;
+    }
+
+    .navbar-brand:hover,
+    .navbar-nav .nav-link:hover {
+      color: black;
+    }
+
+    .nav-item {
+      margin-right: 15px;
+    }
+
+    .nav-link {
+  padding: 15px 20px; /* Adjust the padding as needed */
+  border-radius: 10px;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-align: center; /* Center the text within the button */
+  display: inline-block; /* Make sure the buttons have uniform width */
+}
+
+    .nav-link:hover {
+      background-color: white;
+      color: orange;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu {
+      background-color: orange;
+      color: white;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .dropdown-item {
+      color: white;
+      font-weight: bold;
+    }
+
+    .dropdown-item:hover {
+      background-color: white;
+      color: orange;
+    }
+  
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="">AURION-BANK </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Add your navigation links here -->
+
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/customer">Customer dashboard</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" (click)="viewPassbook()">Passbook</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" (click)="showAccountCreateFun()">Register Customer</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" (click)="showAccountRequestFun()">Request Account</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" (click)="showTransactionFun()">Transaction</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" (click)="showDocumentFun()">Upload Documents</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" (click)="viewQueryForm()">Ask Query</a>
+        </li>
+        <li class="nav-item active" >
+          <a class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+
+        <!-- Add other navigation links as needed -->
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <main style="margin-top: 58px;">
+      <!-- Add your main content from code1 here -->
+      <!-- ... -->
+
+      <!-- Passbook component -->
+      <div *ngIf="showPassbook">
+        <app-customer-passbook></app-customer-passbook>
+      </div>
+
+      <!-- Account request component -->
+      <div *ngIf="showAccountForm">
+        <app-request-account></app-request-account>
+      </div>
+
+      <!-- Account statement component -->
+      <div *ngIf="showAccountStatment">
+        <app-account-statement></app-account-statement>
+      </div>
+
+      <!-- Document upload component -->
+      <div *ngIf="showDocument">
+        <app-customer-document></app-customer-document>
+      </div>
+
+      <!-- Register customer component -->
+      <div *ngIf="showAccountCreate">
+        <app-customer-register></app-customer-register>
+      </div>
+
+      <!-- Customer query component -->
+      <div *ngIf="showQuery">
+        <app-customer-query></app-customer-query>
+      </div>
+
+      <!-- Transaction component -->
+      <div *ngIf="showTransaction">
+        <app-customert-transaction></app-customert-transaction>
+      </div>
+
+      <!-- Add other components as needed -->
+
+      <h4 *ngIf="showWarrning">Create Customer Details to Request Account</h4>
+
+      <div *ngIf="showQueryTab">
+        <app-view-query></app-view-query>
+      </div>
+
+      <h3>userId: {{newUserId}}</h3>
+      
+
+      <h3>customerId:{{customerId}}</h3>
+
+      <!-- <h3>AccountId:{{customerId}}</h3>
+      <h3>AccountId: out{{customerId}}</h3> -->
+
+      <h3>userId In:{{userId}}</h3>
+    </main>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

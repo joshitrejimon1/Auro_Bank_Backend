@@ -1,0 +1,58 @@
+<!-- account-list.component.html -->
+<!-- Your existing HTML -->
+
+
+<div class="container mt-4">
+    <h2>Account List</h2>
+    <div class="row">
+      <!-- First column with the table -->
+      <div class="col-md-8">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Account Number</th>
+              <th>Account Type</th>
+              <th>Request Date</th>
+              <th>Account Balance</th>
+              <th>Customer Id</th>
+              <th>Action</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let account of accounts">
+              <td>{{ account.accountNumber }}</td>
+              <td>{{ account.accountType }}</td>
+              <td>{{ account.openningDate | date: 'yyyy-MM-dd' }}</td>
+              <td>{{ account.accountBalance }}</td>
+              <td>{{ account.customerId }}</td>
+              <td>
+                <button *ngIf="!account.isActive" class="btn btn-primary" (click)="acceptAccount(account)">Accept</button>
+              </td>
+             
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Second column with the search form -->
+      <div class="col-md-4">
+        <h5>search customer id to view  customer uploaded document</h5>
+        <form class="mb-4 mt-4">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search by Customer ID" [(ngModel)]="searchCustomerId" />
+            <button class="btn btn-outline-secondary" type="button" (click)="searchDocument()">Search</button>
+          </div>
+        </form>
+        <!-- Additional content related to search, if needed... -->
+      </div>
+    </div>
+  </div>
+  <!-- <div *ngIf="showAccountNotFound" class="modal-overlay">
+    <div class="modal-dialog">
+      <ngb-alert class="bg-danger">
+        <h1 class="text-white">Sorry, Account Not Found</h1>
+        <button class="btn btn-success" (click)="refreshfun()">Clear</button>
+      </ngb-alert>
+    </div> -->
+  <!-- </div> -->
