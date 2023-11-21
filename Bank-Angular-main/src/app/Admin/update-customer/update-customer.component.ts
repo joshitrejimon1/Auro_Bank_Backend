@@ -28,6 +28,7 @@ fetchSingleData: any={};
 
   }
   
+  
   dataStore:any
 
  
@@ -108,6 +109,30 @@ fetchSingleData: any={};
       }
       }
     )
+  }
+  deleteCustomer(customer: any) {
+    if (confirm('Are you sure you want to delete this customer?')) {
+      // Set isActive to false and update the customer
+      customer.isActive = false;
+
+      // Call the DeleteCustomer method to delete the customer on the server
+      this.auth.DeleteCustomer(customer.customerId).subscribe({
+        next: (response) => {
+          alert('Customer deleted successfully');
+          
+
+          // Refresh the customer list after deletion
+          this.auth.SHowAllCustomer().subscribe((data) => {
+            this.dataStore = data;
+          });
+
+          location.reload();
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      });
+    }
   }
 
 }

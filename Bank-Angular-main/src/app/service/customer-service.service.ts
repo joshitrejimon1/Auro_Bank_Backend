@@ -17,6 +17,7 @@ passbookViewUrl="https://localhost:7078/api/Customer/passbook?id";
 askQueryUrl="https://localhost:7078/api/Query/customerAskQuery";
 
 updateCustoemrUrl="https://localhost:7078/api/Customer"
+deleteCustomerUrl = "https://localhost:7078/api/Customer";
 
 paginationUrl="";
 
@@ -67,6 +68,8 @@ public UpdateCustomer(data:any)
 {
  return this.http.put(this.updateCustoemrUrl,data)
 }
-
+public DeleteCustomer(customerId: number) {
+  return this.http.delete(`${this.deleteCustomerUrl}/${customerId}`);
+}
 
 }

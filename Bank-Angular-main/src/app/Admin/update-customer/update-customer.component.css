@@ -1,0 +1,16 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 700px; /* Adjust as needed */
+  }
+
+  .table th, .table td {
+    text-align: center;
+  }
+
+  .action-buttons button {
+    margin-right: 5px;
+  }

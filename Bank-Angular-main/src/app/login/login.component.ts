@@ -19,7 +19,7 @@ loginUserForm=new FormGroup(
     Password :new FormControl('',[Validators.required])
   }
 ) 
-
+ 
 
 
 get userValidator()
@@ -77,7 +77,7 @@ constructor(private auth:UserServiceService,private route:Router,private datas:D
       error:(errorResponce:HttpErrorResponse)=>
       {
         console.log(errorResponce);
-        console.log("error happende");
+     
         this.showErrorMessage=true
         
       }

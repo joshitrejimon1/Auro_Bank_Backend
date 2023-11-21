@@ -18,10 +18,10 @@ export class SignupPageComponent {
       email:new FormControl('',[Validators.required,Validators.email]),
       Password:new FormControl('',[Validators.required,Validators.minLength(6)]),
       ConfirmPassword:new FormControl('',[Validators.required]),//no validation
-      roleId:new FormControl('',[Validators.required])
+      roleId:new FormControl('2',[Validators.required])
     },
     {
-      validators:matchpassword
+      validators:matchpassword 
     }
 
   )

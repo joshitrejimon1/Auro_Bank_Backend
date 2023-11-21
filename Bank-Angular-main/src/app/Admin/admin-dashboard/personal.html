@@ -1,210 +1,206 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Your Angular App</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    />
-    <style>
-      body {
-        background-color: white;
-        color: black;
-        background-image: url("assets/background.jpg"); /* Set the path to your background image */
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 300%;
-      }
-
-      ba
-
-    /* Position the image */
-    img.card-image {
-        position: absolute;
-        top: 50%;
-        right: 30%;
-        transform: translateY(-50%);
-      }
-
-      .navbar {
-        background-color: black;
-        width: 200%;
-        height: 150%;
-      }
-
-      .navbar-brand,
-      .navbar-nav .nav-link {
-        color: orange;
-      }
-
-      .navbar-brand:hover,
-      .navbar-nav .nav-link:hover {
-        color: black;
-      }
-
-      .nav-item {
-        margin-right: 15px;
-      }
-
-      .nav-link {
-        padding: 15px 25px;
-        border-radius: 10px;
-        background-color: orange;
-        color: white;
-        font-weight: bold;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        width: 150px; /* Set the width to your desired value */
-        text-align: center; /* Center the text within the button */
-        display: inline-block; /* Make sure the buttons have uniform width */
-      }
-
-      .nav-link:hover {
-        background-color: white;
-        color: orange;
-      }
-
-      .nav-item.dropdown:hover .dropdown-menu {
-        display: block;
-      }
-
-      .dropdown-menu {
-        background-color: orange;
-        color: white;
-        border-radius: 10px;
-        display: none;
-      }
-
-      .dropdown-item {
-        color: white;
-        font-weight: bold;
-      }
-
-      .dropdown-item:hover {
-        background-color: white;
-        color: orange;
-      }
-    </style>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="#">AURION-BANK </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-
-
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link"
-            aria-current="true"
-             routerLink="/admin">
-            Admin  Dashboard
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2">
+      <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <a class="navbar-brand" href="/customer">
+              <img
+                src="../../../assets/logo.png"
+                height="50"
+                width="80"
+                alt="MDB Logo"
+                loading="lazy"
+              />
             </a>
-          </li>
+            <!-- Customer Dashboard Link -->
+            <li class="nav-item">
+              <a href="/admin" class="nav-link">
+                <span> Dashboard</span>
+              </a>
+            </li>
 
+            <!-- Register Customer Link -->
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" (click)="showCustomerFun()">
+                <!-- <i class="fas fa-lock fa-fw me-3"></i> -->
+                <span> Customers </span>
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              (click)="showCustomerFun()"
-              >Customers</a
-            >
-          </li>
+            <!-- Request Account Link -->
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" (click)="showTransaction()">
+                <!-- <i class="fas fa-lock fa-fw me-3"></i> -->
+                <span> Transactions</span>
+              </a>
+            </li>
 
-        
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" (click)="handleCardClick()">
+                <!-- <i class="fas fa-lock fa-fw me-3"></i> -->
+                <span> Query Requests</span>
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              (click)="showTransaction()"
-              >Transactions</a
-            >
-          </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" (click)="handleAccountRequest()">
+                <!-- <i class="fas fa-lock fa-fw me-3"></i> -->
+                <span> Account Requests</span>
+              </a>
+            </li>
 
+            <!-- Transaction Link -->
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" (click)="UpdateInterest()">
+                <!-- <i class="fas fa-lock fa-fw me-3"></i> -->
+                <span> Set Interest Rate</span>
+              </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" (click)="showCrud()">
+                <!-- <i class="fas fa-lock fa-fw me-3"></i> -->
+                <span>Manage Customer</span>
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              (click)="handleCardClick()"
-              
-              >Query Request</a
-            >
-          </li>
+            <!-- Logout Customer Link -->
+            <li class="nav-item logout" routerLinkActive="active">
+              <a class="nav-link" (click)="logout()">
+                <i class="fas fa-sign-out-alt fa-fw"></i>
+                <span> LogOut</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-          
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              (click)="handleAccountRequest()"
-              >Account Request</a
-            >
-          </li>
+    <div class="col-md-10">
+      <!-- Navbar Component -->
+      <!-- Navbar -->
+      <nav
+        id="main-navbar"
+        class="navbar navbar-expand-lg navbar-light bg-light my-navbar"
+      >
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Navbar brand -->
+          <!-- <a class="navbar-brand text-bg-primary bg-success" href="/admin">Navbar</a> -->
 
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              (click)="AccountTransactionFilter()"
-              >Account Transactions </a
-            >
-          </li>
+          <div class="row align-items-center w-100">
+            <!-- List items on the left side -->
 
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              (click)="UpdateInterest()"
-              >Intrest Rates  </a
-            >
-          </li>
+            <!-- Input -->
+            <div class="col-md-4">
+              <input
+                type="date"
+                [(ngModel)]="dateData"
+                class="form-control"
+                placeholder="Filter Transaction using Date"
+              />
+            </div>
 
+            <!-- Search button -->
+            <div class="col-md-2">
+              <button (click)="searchData()" class="btn btn-success">
+                <strong>Search</strong>
+              </button>
+            </div>
 
-          
-
-          
-        </ul>
-      </div>
-    </nav>
-
-    <!--Main layout-->
-
-    <main style="margin-top: 58px;">
-        <div class="container pt-4">
-          <div class="container mt-2">
-            <div class="row">
-              <div class="col-md-5">
-      
-      
-                <input
-                  type="date"
-                  [(ngModel)]="dateData"
-                  class="form-control"
-                  placeholder="Filter Transaction using Date"
-                />
-              </div>
-      
-              
-              <div class="col-md-5">
-                <button (click)="searchData()" class="btn btn-success">Search</button>
-              </div>
+            <div class="col-md-6 d-flex justify-content-end">
+              <ul class="navbar-nav ms-auto d-flex flex-row">
+                <li class="nav-item">
+                  <h1>Welcome {{userName}}</h1>
+                </li>
+                <!-- Avatar -->
+                <li class="nav-item dropdown g-1">
+                  <img
+                    src="../../../assets/avtar.png"
+                    class="rounded-circle"
+                    height="40"
+                    alt="Avatar"
+                    loading="lazy"
+                  />
+                </li>
+              </ul>
             </div>
           </div>
         </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+
+      <main style="margin-top: 8px;">
+        <div class="container mt-2" *ngIf="showCardsState">
+          <div class="row text-center">
+            <!-- Customer Count Card -->
+            <div class="col-md-3">
+              <div class="counter-card">
+                <i class="fas fa-users icon"></i>
+                <h3>{{ totalCustomers }}</h3>
+                <p>Total Customer</p>
+              </div>
+            </div>
+
+            <!-- Accounts Count Card -->
+            <div class="col-md-3">
+              <div class="counter-card">
+                <i class="fas fa-university icon"></i>
+                <h3>{{ totalAccounts }}</h3>
+                <p>Total Accounts</p>
+              </div>
+            </div>
+
+            <!-- Total Queries Card -->
+            <div class="col-md-3">
+              <div class="counter-card">
+                <i class="fas fa-question-circle icon"></i>
+                <h3>{{ totalQueries }}</h3>
+                <p>Total Queries</p>
+              </div>
+            </div>
+
+            <!-- Total Active Users Card -->
+            <!-- <div class="col-md-3">
+              <div class="counter-card">
+                <i class="fas fa-user-check icon"></i>
+                <h3>{{ totalActiveUsers }}</h3>
+                <p>Total Active Users</p>
+              </div>
+            </div> -->
+
+            <!-- Total Admins Card -->
+            <!-- <div class="col-md-2">
+              <div class="counter-card">
+                <i class="fas fa-user-shield icon"></i>
+                <h3>{{ totalAdmins }}</h3>
+                <p>Total Admins</p>
+              </div>
+            </div> -->
+
+            <!-- Account Requests Card -->
+            <div class="col-md-3">
+              <div class="counter-card">
+                <i class="fas fa-user-plus icon"></i>
+                <h3>{{ totalRequests }}</h3>
+                <p>Account Requests</p>
+              </div>
+            </div>
+
+            <!-- <div class="four col-md-3">
+              <div class="counter-box colored">
+                <i class="fas fa-thumbs-o-up icon"></i>
+                <span class="counter">2147</span>
+                <p>Happy Customers</p>
+              </div>
+            </div> -->
+
+            <!-- Other cards for Total Users, Active Users, Total Admins, Query Requests -->
+            <!-- Similar structure to above cards -->
+          </div>
+        </div>
+
         <ngb-alert *ngIf="resultArray">
           <h1 class="text-success">No Transaction have</h1>
           <button type="button" class="btn btn-success" (click)="reset()">
@@ -240,74 +236,14 @@
             </button>
           </table>
         </div>
-        <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
-          <div class="col" (click)="handleCardClick()">
-            <div class="card h-100">
-              <img
-                src="../../../assets/query2.jpg"
-                class="card-img-top"
-                alt="Hollywood Sign on The Hill"
-              />
-              <div class="card-body">
-                <h5 class="card-title">View Query Request</h5>
-                <p class="card-text">
-                  You can view the Customer Query Here
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col" (click)="handleAccountRequest()">
-            <div class="card h-100">
-              <img
-                src="../../../assets/request.jpg"
-                class="card-img-top"
-                alt="Hollywood Sign on The Hill"
-              />
-              <div class="card-body">
-                <h5 class="card-title">View Account Requests</h5>
-                <p class="card-text">
-                  You can view the Customer Applied Request to admin
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col" (click)="AccountTransactionFilter()">
-            <div class="card h-100">
-              <img
-                src="../../../assets/filter.jpg"
-                class="card-img-top"
-                alt="Hollywood Sign on The Hill"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Filter Customer Account Transactions</h5>
-                <p class="card-text">
-                  admin can filter the customer transaction by Account Number
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col" (click)="UpdateInterest()">
-            <div class="card h-100">
-              <img
-                src="../../../assets/interest.jpg"
-                class="card-img-top"
-                alt="Hollywood Sign on The Hill"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Set Interest Rate</h5>
-                <p class="card-text">
-                  admin can change the Intrest Rate
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- Repeat similar structures for other cards -->
-        </div>
+
         <div *ngIf="eroorQuerySubmit" class="mt-3">
           <!-- Add margin-top for spacing -->
           <ngb-alert [type]="'danger'">
             <!-- Use 'danger' for a red alert -->
-            <h4 class="alert-heading">Check you have Entered correct CustomerId</h4>
+            <h4 class="alert-heading">
+              Check you have Entered correct CustomerId
+            </h4>
             <p class="mb-0">Please verify the information and try again.</p>
             <button class="btn btn-danger" (click)="reset()">Try Again</button>
           </ngb-alert>
@@ -318,6 +254,7 @@
             Clear
           </button>
         </ngb-alert>
+
         <div class="container mt-4" *ngIf="showQueryResult">
           <div class="row">
             <!-- Left Column (Upper part) -->
@@ -328,6 +265,7 @@
                   <tr>
                     <th>Query Message</th>
                     <th>Customer ID</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -335,7 +273,10 @@
                     <td>{{ query.queryText }}</td>
                     <td>{{ query.customerId }}</td>
                     <td>
-                      <button class="btn btn-primary" (click)="generateReplyForm()">
+                      <button
+                        class="btn btn-primary"
+                        (click)="generateReplyForm()"
+                      >
                         Reply
                       </button>
                     </td>
@@ -343,129 +284,75 @@
                 </tbody>
               </table>
             </div>
-      
+
             <!-- Right Column (Lower part) -->
             <div class="col-md-6" *ngIf="formShow">
               <h2>Reply to Query</h2>
-              <form [formGroup]="replyForm" (ngSubmit)="onSubmit(replyForm.value)">
+              <form
+                [formGroup]="replyForm"
+                (ngSubmit)="onSubmit(replyForm.value)"
+              >
                 <div class="mb-3">
-                  <span
-                    *ngIf="replyValidator && replyValidator.invalid && replyValidator.touched"
-                    style="color: red;"
+                  <label for="replyMessage" class="form-label"
+                    >Reply Message:</label
                   >
-                    Required Reply Text
-                  </span>
-                  <label for="replyMessage" class="form-label">Reply Message:</label>
                   <textarea
                     class="form-control"
                     formControlName="replyQuery"
                   ></textarea>
+                  <span
+                    class="error-message"
+                    *ngIf="replyValidator && replyValidator.invalid && replyValidator.touched"
+                  >
+                    Required Reply Text
+                  </span>
                 </div>
                 <div class="mb-3">
-                  <span
-                    *ngIf="cutomerIdValidator && cutomerIdValidator.invalid && cutomerIdValidator.touched"
-                    style="color: red;"
+                  <label for="customerId" class="form-label"
+                    >Customer ID:</label
                   >
-                    Required Customer ID
-                  </span>
-                  <label for="customerId" class="form-label">Customer ID:</label>
                   <input
                     type="number"
                     class="form-control"
                     formControlName="customerId"
                   />
+                  <span
+                    class="error-message"
+                    *ngIf="cutomerIdValidator && cutomerIdValidator.invalid && cutomerIdValidator.touched"
+                  >
+                    Required Customer ID
+                  </span>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
             </div>
           </div>
         </div>
-      
+
         <div *ngIf="showAccountTransactions">
           <app-account-filter></app-account-filter>
         </div>
-      
+
         <div *ngIf="showCustomerAll">
           <app-update-customer></app-update-customer>
         </div>
-      
+
         <div *ngIf="showAccountRequest">
           <app-admin-account-request></app-admin-account-request>
         </div>
-      
+
         <div *ngIf="showUpdateInterest">
           <app-set-interest></app-set-interest>
         </div>
-      
+
         <div *ngIf="showTransactionState">
-          <!-- <app-transaction-show></app-transaction-show> -->
+          <app-transaction-show></app-transaction-show>
+        </div>
+
+        <div *ngIf="showCrudeState">
+          <app-crud-customer></app-crud-customer>
         </div>
       </main>
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="container">
-      <!-- Your Angular router-outlet and other content go here -->
-      <router-outlet></router-outlet>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <div *ngIf="showPassbook">
-      <app-customer-passbook></app-customer-passbook>
-    </div>
-
-    <div *ngIf="showAccountForm">
-      <app-request-account></app-request-account>
-    </div>
-
-    <div *ngIf="showAccountStatment">
-      <app-account-statement></app-account-statement>
-    </div>
-
-    <div *ngIf="showDocument">
-      <app-customer-document></app-customer-document>
-    </div>
-
-    <div *ngIf="showAccountCreate">
-      <app-customer-register></app-customer-register>
-    </div>
-
-    <div *ngIf="showQuery">
-      <app-customer-query></app-customer-query>
-    </div>
-
-    <div *ngIf="showTransaction">
-      <app-customert-transaction></app-customert-transaction>
-    </div>
-    <br />
-    <br />
-    <h1>Welcome To AURION-PRO EBANKING PORTAL{{userName}}</h1>
-    <i class="fas fa-chart-pie fa-fw me-3">
-      <h1>Welcome{{userName}}</h1>
-      <h1>Welcome{{userId}}</h1></i
-    >
-    <h2>ROLL ID---</h2>
-    <h2>TOTAL BALANCE</h2>
-    <h2>Total Income</h2>
-    <h2>To Tal Withdraw</h2>
-
-    <img
-      src="assets/card.png"
-      alt="Card Image"
-      height="250"
-      class="card-image"
-    />
-  </body>
-</html>
+  </div>
+</div>
